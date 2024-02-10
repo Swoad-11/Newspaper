@@ -5,7 +5,7 @@ export default function Right() {
   const { newsData } = useContext(NewsContext);
 
   const limitedNewsData = newsData.slice(9, 14);
-  console.log(limitedNewsData);
+
   return (
     <>
       <div className="col-span-12 self-start xl:col-span-4">
