@@ -4,7 +4,6 @@ import { formatTime } from "../../../utils/formatTime";
 
 export default function Left() {
   const { newsData } = useContext(NewsContext);
-  console.log(newsData);
 
   const limitedNewsData = newsData.slice(0, 9);
 
@@ -20,9 +19,7 @@ export default function Left() {
                     {news.title}
                   </h3>
                 </a>
-                <p className="text-base text-[#5C5955]">
-                  {news?.content?.split(" ").slice(0, 25).join(" ")}
-                </p>
+                <p className="text-base text-[#5C5955]">{news.description}</p>
                 <p className="mt-5 text-base text-[#5C5955]">
                   {formatTime(news.publishedAt)}
                 </p>
@@ -46,9 +43,7 @@ export default function Left() {
                     {news.title}
                   </h3>
                 </a>
-                <p className="text-base text-[#292219]">
-                  {news?.content?.split(" ").slice(0, 13).join(" ")}
-                </p>
+                <p className="text-base text-[#292219]">{news.description}</p>
                 <p className="mt-5 text-base text-[#5C5955]">
                   {formatTime(news.publishedAt)}
                 </p>
@@ -71,9 +66,7 @@ export default function Left() {
                     {news.title}
                   </h3>
                 </a>
-                <p className="text-base text-[#292219]">
-                  {news?.content?.split(" ").slice(0, 13).join(" ")}
-                </p>
+                <p className="text-base text-[#292219]">{news.description}</p>
                 <p className="mt-5 text-base text-[#94908C]">
                   {formatTime(news.publishedAt)}
                 </p>

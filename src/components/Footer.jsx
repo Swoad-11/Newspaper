@@ -1,3 +1,5 @@
+import logo from "../assets/logo_light.png";
+
 export default function Footer() {
   return (
     <>
@@ -5,11 +7,7 @@ export default function Footer() {
         <div className="container mx-auto">
           <div className="xl:grid xl:grid-cols-12 xl:gap-8">
             <div className="grid grid-cols-2 gap-8 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-3 xl:col-span-7 xl:grid-cols-5">
-              <img
-                className="max-md:col-span-2"
-                src="./assets/logo_light.png"
-                alt="lws"
-              />
+              <img className="max-md:col-span-2" src={logo} alt="lws" />
               <ul role="list" className="space-y-4">
                 <li>
                   <a href="#" className="text-sm font-semibold">
