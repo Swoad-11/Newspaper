@@ -3,7 +3,7 @@ import searchIcon from "../../assets/icons/search.svg";
 export default function Search() {
   return (
     <>
-      <form action="#">
+      <form className="bg-gray-50 hover:bg-gray-100 rounded-lg" action="#">
         <div className="flex items-center space-x-2 py-2 px-3 group transition-all  focus-within:border-b-0 focus-within:rounded-md">
           <div className="relative flex-grow">
             <input
