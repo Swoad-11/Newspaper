@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { CategoryContext } from "../conext";
 
 const useNewsAPI = () => {
-  const [newsData, setNewsData] = useState({});
+  const [newsData, setNewsData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { selectedCategory } = useContext(CategoryContext);
@@ -20,7 +20,14 @@ const useNewsAPI = () => {
       }
 
       const data = await response.json();
-      setNewsData(data.articles);
+
+      data.articles.sort((a, b) => {
+        if (a.urlToImage === null && b.urlToImage !== null) return 1;
+        if (a.urlToImage !== null && b.urlToImage === null) return -1;
+        return 0;
+      });
+
+      setNewsData(data?.articles);
     } catch (error) {
       setError(error);
     } finally {
