@@ -8,17 +8,12 @@ const useNewsAPI = () => {
   const { selectedCategory } = useContext(CategoryContext);
   const { searchTerm } = useContext(SearchContext);
 
-  const fetchNewsData = async (category, search) => {
+  const fetchNewsData = async (category, searchTerm) => {
     try {
-      setLoading({
-        ...loading,
-        state: true,
-        message: "Loading News...",
-      });
-
+      setLoading(true);
       let apiUrl;
-      if (search && search !== "") {
-        apiUrl = `http://localhost:8000/v2/search?q=${search}`;
+      if (searchTerm && searchTerm !== "") {
+        apiUrl = `http://localhost:8000/v2/search?q=${searchTerm}`;
       } else {
         apiUrl = `http://localhost:8000/v2/top-headlines?category=${category}`;
       }
@@ -31,32 +26,35 @@ const useNewsAPI = () => {
       }
 
       const data = await response.json();
-      console.log(data);
 
-      data.articles.sort((a, b) => {
+      let extractedArticles;
+      if (data.articles) {
+        extractedArticles = data?.articles;
+      } else if (data.result) {
+        extractedArticles = data?.result;
+      } else {
+        throw new Error("Invalid API response format");
+      }
+
+      extractedArticles.sort((a, b) => {
         if (a.urlToImage === null && b.urlToImage !== null) return 1;
         if (a.urlToImage !== null && b.urlToImage === null) return -1;
         return 0;
       });
 
-      setNewsData(data?.articles);
+      console.log("log-2", data);
+
+      setNewsData(extractedArticles);
     } catch (error) {
       setError(error);
     } finally {
-      setLoading({
-        ...loading,
-        state: false,
-        message: "",
-      });
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    setLoading({
-      ...loading,
-      state: true,
-      message: "Finding your location...",
-    });
+    console.log("useEffect triggered");
+    setLoading(true);
     fetchNewsData(selectedCategory, searchTerm);
   }, [selectedCategory, searchTerm]);
 
