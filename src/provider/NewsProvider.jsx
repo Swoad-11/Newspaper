@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 
 import { NewsContext } from "../conext";
-import useNewsAPI from "../hooks/useNewsAPI";
+import { useNewsQuery } from "../hooks";
 
 const WeatherProvider = ({ children }) => {
-  const { newsData, error, loading } = useNewsAPI();
+  const { newsData, error, loading } = useNewsQuery();
   return (
     <NewsContext.Provider value={{ newsData, error, loading }}>
       {children}

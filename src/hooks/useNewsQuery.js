@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { CategoryContext, SearchContext } from "../conext";
 
-const useNewsAPI = () => {
+const useNewsQuery = () => {
   const [newsData, setNewsData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -10,7 +10,12 @@ const useNewsAPI = () => {
 
   const fetchNewsData = async (category, searchTerm) => {
     try {
-      setLoading(true);
+      setLoading({
+        ...loading,
+        state: true,
+        message: "Loading news data...",
+      });
+
       let apiUrl;
       if (searchTerm && searchTerm !== "") {
         apiUrl = `http://localhost:8000/v2/search?q=${searchTerm}`;
@@ -42,8 +47,6 @@ const useNewsAPI = () => {
         return 0;
       });
 
-      console.log("log-2", data);
-
       setNewsData(extractedArticles);
     } catch (error) {
       setError(error);
@@ -53,12 +56,15 @@ const useNewsAPI = () => {
   };
 
   useEffect(() => {
-    console.log("useEffect triggered");
-    setLoading(true);
+    setLoading({
+      ...loading,
+      state: true,
+      message: "Finding news to show...",
+    });
     fetchNewsData(selectedCategory, searchTerm);
   }, [selectedCategory, searchTerm]);
 
   return { newsData, loading, error };
 };
 
-export default useNewsAPI;
+export default useNewsQuery;

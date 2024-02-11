@@ -77,7 +77,10 @@ export default function Navbar() {
             <span>{currentDate}</span>
           </div>
 
-          <a href="/">
+          <a
+            href="/"
+            className="lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2"
+          >
             <img
               className="max-w-[100px] md:max-w-[165px]"
               src={logo}
