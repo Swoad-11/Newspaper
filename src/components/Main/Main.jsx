@@ -6,12 +6,22 @@ import NoData from "./NoData";
 import { BeatLoader } from "react-spinners";
 
 export default function Main() {
-  const { noData, loading } = useContext(NewsContext);
+  const { noData, error, loading } = useContext(NewsContext);
 
   if (loading) {
     return (
       <div className="my-40 text-center">
         <BeatLoader color="#ef4444" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="my-40 text-center">
+        <p className="text-[#ef4444] font-extrabold text-4xl">
+          Error: {error.message}
+        </p>
       </div>
     );
   }

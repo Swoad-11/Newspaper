@@ -38,21 +38,21 @@ const useNewsQuery = () => {
       const data = await response.json();
 
       let extractedArticles;
-      if (data.articles) {
+      if (data?.articles) {
         extractedArticles = data?.articles;
-      } else if (data.result) {
+      } else if (data?.result) {
         extractedArticles = data?.result;
       } else {
         throw new Error("Invalid API response format");
       }
 
-      extractedArticles.sort((a, b) => {
+      extractedArticles?.sort((a, b) => {
         if (a.urlToImage === null && b.urlToImage !== null) return 1;
         if (a.urlToImage !== null && b.urlToImage === null) return -1;
         return 0;
       });
 
-      if (extractedArticles.length === 0) setNoData(true);
+      if (extractedArticles?.length === 0) setNoData(true);
 
       setNewsData(extractedArticles);
     } catch (error) {
