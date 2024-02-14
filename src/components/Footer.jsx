@@ -141,7 +141,10 @@ export default function Footer() {
                 </p>
               </div>
 
-              <button className="rounded-full bg-[#00D991] px-7 py-2.5 text-xs font-medium text-[#F1EFEA] hover:opacity-80 lg:text-base">
+              <button
+                className="rounded-full bg-red-500 px-7 py-2.5 text-xs
+               font-medium text-white hover:opacity-80 lg:text-base"
+              >
                 Subscribe
               </button>
             </div>
@@ -149,7 +152,8 @@ export default function Footer() {
         </div>
         <div className="container mt-6 lg:mt-12">
           <p className="text-center">
-            Copyright &copy;2023 | All rights reserved by Learn with Sumit
+            Copyright &copy;2023 | All rights reserved by{" "}
+            <span className="font-bold uppercase">Daily News</span>
           </p>
         </div>
       </footer>

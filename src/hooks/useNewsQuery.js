@@ -18,9 +18,13 @@ const useNewsQuery = () => {
 
       let apiUrl;
       if (searchTerm && searchTerm !== "") {
-        apiUrl = `http://localhost:8000/v2/search?q=${searchTerm}`;
+        apiUrl = `https://newsapi.org/v2/top-headlines?q=${searchTerm}&apiKey=${
+          import.meta.env.VITE_NEWS_API_KEY
+        }`;
       } else {
-        apiUrl = `http://localhost:8000/v2/top-headlines?category=${category}`;
+        apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${
+          import.meta.env.VITE_NEWS_API_KEY
+        }`;
       }
 
       const response = await fetch(apiUrl);
