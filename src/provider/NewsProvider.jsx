@@ -4,9 +4,9 @@ import { NewsContext } from "../conext";
 import { useNewsQuery } from "../hooks";
 
 const WeatherProvider = ({ children }) => {
-  const { newsData, error, loading } = useNewsQuery();
+  const { newsData, error, loading, noData } = useNewsQuery();
   return (
-    <NewsContext.Provider value={{ newsData, error, loading }}>
+    <NewsContext.Provider value={{ newsData, error, loading, noData }}>
       {children}
     </NewsContext.Provider>
   );

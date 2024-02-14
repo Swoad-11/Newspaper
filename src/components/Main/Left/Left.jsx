@@ -26,7 +26,7 @@ export default function Left() {
               </div>
 
               <div className="col-span-12 lg:col-span-8">
-                <img className="w-full" src={news.urlToImage} alt="thumb" />
+                <img className="w-full" src={news.image} alt="thumb" />
                 <p className="mt-5 text-base text-[#5C5955]">{news.author}</p>
               </div>
             </div>
@@ -50,7 +50,7 @@ export default function Left() {
               </div>
 
               <div className="col-span-12 md:col-span-6">
-                <img className="w-full" src={news.urlToImage} alt="thumb" />
+                <img className="w-full" src={news.image} alt="thumb" />
               </div>
             </div>
           );

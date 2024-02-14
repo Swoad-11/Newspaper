@@ -98,6 +98,11 @@ export default function Navbar() {
               </a>
             </li>
             <li>
+              <a href="#" onClick={() => handleCategoryClick("global")}>
+                Global
+              </a>
+            </li>
+            <li>
               <a href="#" onClick={() => handleCategoryClick("business")}>
                 Business
               </a>

@@ -14,7 +14,7 @@ export default function Right() {
             if (index === 0) {
               return (
                 <div key={index} className="col-span-12 mb-6 md:col-span-8">
-                  <img className="w-full" src={news.urlToImage} alt="thumb" />
+                  <img className="w-full" src={news.image} alt="thumb" />
 
                   <div className="col-span-12 mt-6 md:col-span-4">
                     <a href="#">

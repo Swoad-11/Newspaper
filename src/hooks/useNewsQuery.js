@@ -4,6 +4,7 @@ import { CategoryContext, SearchContext } from "../conext";
 const useNewsQuery = () => {
   const [newsData, setNewsData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [noData, setNoData] = useState(false);
   const [error, setError] = useState(null);
   const { selectedCategory } = useContext(CategoryContext);
   const { searchTerm } = useContext(SearchContext);
@@ -18,11 +19,11 @@ const useNewsQuery = () => {
 
       let apiUrl;
       if (searchTerm && searchTerm !== "") {
-        apiUrl = `https://newsapi.org/v2/top-headlines?q=${searchTerm}&apiKey=${
+        apiUrl = `https://gnews.io/api/v4/search?q=${searchTerm}&apikey=${
           import.meta.env.VITE_NEWS_API_KEY
         }`;
       } else {
-        apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${
+        apiUrl = `https://gnews.io/api/v4/top-headlines?category=${category}&country=gb&apikey=${
           import.meta.env.VITE_NEWS_API_KEY
         }`;
       }
@@ -51,6 +52,8 @@ const useNewsQuery = () => {
         return 0;
       });
 
+      if (extractedArticles.length === 0) setNoData(true);
+
       setNewsData(extractedArticles);
     } catch (error) {
       setError(error);
@@ -68,7 +71,7 @@ const useNewsQuery = () => {
     fetchNewsData(selectedCategory, searchTerm);
   }, [selectedCategory, searchTerm]);
 
-  return { newsData, loading, error };
+  return { newsData, loading, error, noData };
 };
 
 export default useNewsQuery;
